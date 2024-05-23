@@ -1,0 +1,77 @@
+﻿<Page x:Class="TestEcopDesktop.ClientePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TestEcopDesktop"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientePage">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Código -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Código:" Background="#FF929292"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" x:Name="txtCodigo"/>
+
+        <!-- Nombre -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Nombre:" Background="#FF929292"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" x:Name="txtNombre"/>
+        <!-- Apellido -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Apellido:" Background="#FF929292"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" x:Name="txtApellido"/>
+
+        <!-- Id tipo doc -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Tipo documento:" Background="#FF929292"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="5" x:Name="cbIdDoc">
+            <ComboBoxItem Content="CI" />
+            <ComboBoxItem Content="PASAPORTE" />
+            <!-- Añade más ítems según sea necesario -->
+        </ComboBox>
+
+        <!-- nro doc -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Nro. documento:" Background="#FF929292"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" x:Name="txtDocumneto"/>
+
+        <!-- Botones Guardar y Actualizar -->
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button Content="Guardar" Click="Guardar_Click" Width="114" x:Name="btnGuardar" Background="#FF3AFF00"  Height="38"/>
+            <Button Content="Actualizar" Click="Actualizar_Click" Margin="5" Width="114" x:Name="btnActualizar" Background="#FF73B8FC" Height="38"/>
+        </StackPanel>
+
+        <!-- DataGrid para mostrar clientes -->
+        <DataGrid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Name="dataGridCliente" AutoGenerateColumns="False" Margin="5" SelectionMode="Single" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="*"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="*"/>
+                <DataGridTextColumn Header="Tipo documento" Binding="{Binding DocDes}" Width="*"/>
+                <DataGridTextColumn Header="Nro. documento" Binding="{Binding NroDoc}" Width="*"/>
+                <DataGridTemplateColumn Header="Acciones" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Ver" Click="Ver_Click" Tag="{Binding Id}" Margin="2"/>
+                                <Button Content="Eliminar" Click="Eliminar_Click" Tag="{Binding Id}" Margin="2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
